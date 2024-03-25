@@ -1,236 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.Material3.CardView.Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/md_theme_surfaceContainerHigh">
 
-    <ImageView
-        android:id="@+id/color_picker_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/color_pick"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/color_picker_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/pick_your_color"
-        android:textColor="@color/md_theme_onSurface"
-        android:textSize="32sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/color_picker_icon" />
+        <ImageView
+            android:id="@+id/color_picker_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/color_pick"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/hex_color"
-        android:textColor="@color/md_theme_onSurface"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/hex_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/hex_color" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/color_picker_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/pick_your_color"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/color_picker_icon" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/hex_color"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/color_picker_title">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/hex_color"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/hex_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hex_color" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/hex_color_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hex_color"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/color_picker_title">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hex_color_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <!-- Hue textview -->
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/hue_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/hue"
-        android:textColor="@color/md_theme_onSurface"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/hue_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/hue_input" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Hue textview -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/hue_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/hue"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/hue_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hue_input" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/hue_input"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hex_color">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hue_input"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hex_color">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/hue_edit_text"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hue_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/hue_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/md_theme_onSurface"
+            android:stepSize="1"
+            android:value="240"
+            android:valueFrom="0"
+            android:valueTo="360"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hue_input"
+            app:trackHeight="0dp"
+            app:trackStopIndicatorSize="0dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/saturation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/saturation"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/saturation_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/saturation_input" />
 
-    <com.google.android.material.slider.Slider
-        android:value="240"
-        android:id="@+id/hue_slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/md_theme_onSurface"
-        android:stepSize="1"
-        android:valueFrom="0"
-        android:valueTo="360"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hue_input"
-        app:trackHeight="0dp"
-        app:trackStopIndicatorSize="0dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/saturation_input"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hue_slider">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/saturation_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/saturation"
-        android:textColor="@color/md_theme_onSurface"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/saturation_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/saturation_input" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/saturation_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/saturation_input"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hue_slider">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/saturation_edit_text"
+        <com.google.android.material.slider.Slider
+            android:id="@+id/saturation_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/md_theme_onSurface"
+            android:stepSize="1"
+            android:value="100"
+            android:valueFrom="0"
+            android:valueTo="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saturation_input"
+            app:trackHeight="0dp"
+            app:trackStopIndicatorSize="0dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/value_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/value"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/value_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/value_input" />
 
-    <com.google.android.material.slider.Slider
-        android:value="100"
-        android:id="@+id/saturation_slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/md_theme_onSurface"
-        android:stepSize="1"
-        android:valueFrom="0"
-        android:valueTo="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saturation_input"
-        app:trackHeight="0dp"
-        app:trackStopIndicatorSize="0dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/value_input"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saturation_slider">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/value_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/value"
-        android:textColor="@color/md_theme_onSurface"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@id/value_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/value_input" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/value_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/value_input"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/saturation_slider">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/value_edit_text"
+        <com.google.android.material.slider.Slider
+            android:id="@+id/value_slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/md_theme_onSurface"
+            android:stepSize="1"
+            android:value="100"
+            android:valueFrom="0"
+            android:valueTo="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/value_input"
+            app:trackHeight="0dp"
+            app:trackStopIndicatorSize="0dp" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_button"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/value_slider" />
 
-    <com.google.android.material.slider.Slider
-        android:value="100"
-        android:id="@+id/value_slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/md_theme_onSurface"
-        android:stepSize="1"
-        android:valueFrom="0"
-        android:valueTo="100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/value_input"
-        app:trackHeight="0dp"
-        app:trackStopIndicatorSize="0dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/confirm_button"
+            app:layout_constraintTop_toBottomOf="@id/value_slider" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/confirm_button"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/value_slider" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancel_button"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/confirm_button"
-        app:layout_constraintTop_toBottomOf="@id/value_slider" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

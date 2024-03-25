@@ -27,11 +27,48 @@ import ru.logosph.myfinancemanager.databinding.FragmentColorPickerDialogBinding;
  */
 public class ColorPickerDialogFragment extends DialogFragment {
 
+    /**
+     * Interface for handling the closing of the dialog.
+     * This interface needs to be implemented by the class that wants to receive the color selected in the dialog.
+     */
+    public interface OnDialogCloseListener {
+        /**
+         * Method that will be called when the dialog is closed.
+         * @param color The color selected in the dialog.
+         */
+        void onClose(int color);
+    }
+
+    // Listener for the OnDialogClose event
+    private OnDialogCloseListener closeListener;
+
+    /**
+     * Sets the listener for the OnDialogClose event.
+     * @param listener The listener that will handle the event.
+     */
+    public void setOnCloseListener(OnDialogCloseListener listener) {
+        this.closeListener = listener;
+    }
+
+    /**
+     * Factory method to create a new instance of this fragment using the provided parameters.
+     * @param color The initial color to be set in the dialog.
+     * @return A new instance of fragment ColorPickerDialogFragment.
+     */
+    public static ColorPickerDialogFragment newInstance(int color) {
+        ColorPickerDialogFragment fragment = new ColorPickerDialogFragment();
+        Bundle args = new Bundle();
+        args.putInt("color", color);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     // Binding object for the color picker dialog fragment layout
     FragmentColorPickerDialogBinding binding;
 
     /**
      * Called to create the dialog.
+     *
      * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
      * @return Return a new Dialog instance to be displayed by the Fragment.
      */
@@ -54,8 +91,37 @@ public class ColorPickerDialogFragment extends DialogFragment {
             binding.saturationSlider.setValue(savedInstanceState.getFloat("saturation"));
             binding.valueSlider.setValue(savedInstanceState.getFloat("value"));
             updateColorIcon();
+        } else {
+            // If there is an argument, restore the slider values and update the color icon
+            if (getArguments() != null) {
+                int color = getArguments().getInt("color");
+                float[] hsv = new float[3];
+                Color.colorToHSV(color, hsv);
+                binding.hueSlider.setValue((int)hsv[0]);
+                binding.saturationSlider.setValue((int)(hsv[1] * 100));
+                binding.valueSlider.setValue((int)(hsv[2] * 100));
+                updateColorIcon();
+            }
         }
 
+
+        // Set an OnClickListener for the confirm button
+        binding.confirmButton.setOnClickListener(v -> {
+            // If a closeListener has been set
+            if (closeListener != null) {
+                // Call the onClose method of the closeListener
+                // Pass the currently selected color (converted from HSV to RGB) as an argument
+                closeListener.onClose(Color.HSVToColor(new float[]{binding.hueSlider.getValue(), binding.saturationSlider.getValue() / 100f, binding.valueSlider.getValue() / 100f}));
+            }
+            // Dismiss the dialog
+            dismiss();
+        });
+
+        // Set an OnClickListener for the cancel button
+        binding.cancelButton.setOnClickListener(v -> {
+            // Dismiss the dialog without returning any color
+            dismiss();
+        });
         // Add a text watcher to the hex color EditText
         binding.hexColorEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,9 +152,9 @@ public class ColorPickerDialogFragment extends DialogFragment {
                         int color = Color.parseColor(hex);
                         float[] hsv = new float[3];
                         Color.colorToHSV(color, hsv);
-                        binding.hueSlider.setValue((int)hsv[0]);
-                        binding.saturationSlider.setValue((int)(hsv[1] * 100));
-                        binding.valueSlider.setValue((int)(hsv[2] * 100));
+                        binding.hueSlider.setValue((int) hsv[0]);
+                        binding.saturationSlider.setValue((int) (hsv[1] * 100));
+                        binding.valueSlider.setValue((int) (hsv[2] * 100));
                     } else {
                         binding.hexColorEditText.setText("#");
                     }
@@ -118,6 +184,7 @@ public class ColorPickerDialogFragment extends DialogFragment {
 
     /**
      * Called to ask the fragment to save its current dynamic state, so it can later be reconstructed in a new instance of its process is restarted.
+     *
      * @param outState Bundle in which to place your saved state.
      */
     @Override
@@ -198,9 +265,10 @@ public class ColorPickerDialogFragment extends DialogFragment {
 
     /**
      * Sets up a slider with a change listener and a text watcher.
-     * @param slider The slider to setup.
+     *
+     * @param slider           The slider to setup.
      * @param updateBackground The method to call to update the slider's background.
-     * @param editText The EditText associated with the slider.
+     * @param editText         The EditText associated with the slider.
      */
     private void setupSlider(Slider slider, Runnable updateBackground, EditText editText) {
         slider.post(() -> {
@@ -232,10 +300,11 @@ public class ColorPickerDialogFragment extends DialogFragment {
 
     /**
      * Sets up an EditText with a text watcher.
+     *
      * @param editText The EditText to setup.
-     * @param slider The Slider associated with the EditText.
-     * @param min The minimum value for the EditText.
-     * @param max The maximum value for the EditText.
+     * @param slider   The Slider associated with the EditText.
+     * @param min      The minimum value for the EditText.
+     * @param max      The maximum value for the EditText.
      */
     private void setupEditText(EditText editText, Slider slider, int min, int max) {
         editText.addTextChangedListener(new TextWatcher() {

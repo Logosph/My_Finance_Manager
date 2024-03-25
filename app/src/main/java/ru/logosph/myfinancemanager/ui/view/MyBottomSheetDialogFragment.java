@@ -1,6 +1,7 @@
 package ru.logosph.myfinancemanager.ui.view;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,22 +27,21 @@ public class MyBottomSheetDialogFragment extends BottomSheetDialogFragment {
         binding = FragmentBottomSheetBinding.inflate(inflater, container, false);
 
         binding.colorCircle.setOnClickListener(v -> {
-            ColorPickerDialogFragment colorPickerDialogFragment = new ColorPickerDialogFragment();
+            GradientDrawable colorDrawable = (GradientDrawable) binding.colorCircle.getBackground();
+            int colorFromCircle = colorDrawable.getColor().getDefaultColor();
+            ColorPickerDialogFragment colorPickerDialogFragment = ColorPickerDialogFragment.newInstance(colorFromCircle);
+
+            colorPickerDialogFragment.setOnCloseListener(color -> {
+                GradientDrawable drawable = new GradientDrawable();
+                drawable.setShape(GradientDrawable.OVAL);
+                drawable.setColor(color);
+                binding.colorCircle.setBackground(drawable);
+            });
             colorPickerDialogFragment.show(getParentFragmentManager(), "colorPickerDialogFragment");
         });
 
         binding.changeColorButton.setOnClickListener(v -> {
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setShape(GradientDrawable.OVAL);
-            if (state) {
-                drawable.setColor(getResources().getColor(R.color.md_theme_errorContainer_highContrast, null));
-                binding.colorCircle.setBackground(drawable);
-                state = false;
-            } else {
-                drawable.setColor(getResources().getColor(R.color.md_theme_primary, null));
-                binding.colorCircle.setBackground(drawable);
-                state = true;
-            }
+
         });
 
         return binding.getRoot();
