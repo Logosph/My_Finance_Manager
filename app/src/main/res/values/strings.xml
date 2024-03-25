@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My Finance Manager</string>
+    <string name="statistics">Statistics</string>
+    <string name="statistics_screen">Statistics screen</string>
+    <string name="filter">filter</string>
+    <string name="filter_widget">Filter widget</string>
+    <string name="limit">limit</string>
+    <string name="limits_screen">Limits screen</string>
+    <string name="add_new_account">Add new account</string>
+    <string name="color">Color</string>
+    <string name="pick_your_color">Pick your color</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="value">Value</string>
+    <string name="saturation">Saturation</string>
+    <string name="hue">Hue</string>
+    <string name="hex_color">Hex color</string>
+</resources>

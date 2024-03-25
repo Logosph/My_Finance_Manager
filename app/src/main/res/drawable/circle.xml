@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/md_theme_primary"/> <!-- Замените этот цвет на нужный вам -->
+    <corners android:radius="22dp"/>  <!-- Замените этот радиус на нужный вам -->
+</shape>
