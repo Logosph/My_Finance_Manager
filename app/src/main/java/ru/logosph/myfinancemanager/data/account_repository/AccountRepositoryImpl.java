@@ -14,6 +14,7 @@ import ru.logosph.myfinancemanager.domain.repository_interfaces.AccountRepositor
 public class AccountRepositoryImpl implements AccountRepository {
 
     public MutableLiveData<ArrayList<AccountsItem>> accounts = new MutableLiveData<>();
+    private MutableLiveData<AccountsItem> oneAccount = new MutableLiveData<>();
 
     @Override
     public void loadAccountsFromDB(Context context, LifecycleOwner lifecycleOwner) {
@@ -29,4 +30,29 @@ public class AccountRepositoryImpl implements AccountRepository {
     public LiveData<ArrayList<AccountsItem>> getAccounts() {
         return accounts;
     }
+
+    @Override
+    public LiveData<AccountsItem> getOneAccount() {
+        return oneAccount;
+    }
+
+    @Override
+    public void getAccountByName(Context context, LifecycleOwner lifecycleOwner, String name) {
+        AccountsDB accountsDB = AccountsDB.getInstance(context);
+        AccountsDao accountsDao = accountsDB.accountsDao();
+
+        accountsDao.getAccountByName(name).observe(lifecycleOwner, accountsItem -> {
+            oneAccount.setValue(accountsItem);
+        });
+
+    }
+
+    @Override
+    public void insert(Context context, AccountsItem accountsItem) {
+        AccountsDB accountsDB = AccountsDB.getInstance(context);
+        AccountsDao accountsDao = accountsDB.accountsDao();
+
+        accountsDao.insert(accountsItem);
+    }
+
 }

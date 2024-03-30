@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".ui.view.AddNewBalanceBottomSheetDialogFragment">
 
     <!-- Здесь вы можете добавить любые элементы интерфейса, которые вы хотите отобразить в вашем Bottom Sheet -->
 
@@ -23,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:hint="Name of balance"
+        android:hint="@string/name_of_balance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bottomSheetDragHandle">
@@ -56,6 +58,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/balanceNameInputLayout" />
 
+    <!-- MaterialTextView "Icon" between colorCircle and initialBalanceInputLayout -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/iconTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/icon"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/iconInputLayout"
+        app:layout_constraintBottom_toBottomOf="@id/iconInputLayout"/>
+
+
+    <!-- TextInput for icon -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/iconInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:hint="@string/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/colorCircle"
+        app:layout_constraintStart_toStartOf="@id/limitInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/iconEditText"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/initialBalanceInputLayout"
         android:layout_width="0dp"
@@ -63,14 +100,15 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="32dp"
-        android:hint="Initial balance"
+        android:hint="@string/initial_balance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/limitInputLayout"
-        app:layout_constraintTop_toBottomOf="@id/colorCircle">
+        app:layout_constraintTop_toBottomOf="@id/iconInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/initialBalanceEditText"
             android:layout_width="match_parent"
+            android:inputType="numberDecimal"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,26 +119,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginTop="16dp"
-        android:hint="Limit"
+        android:hint="@string/limit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/initialBalanceInputLayout"
-        app:layout_constraintTop_toBottomOf="@id/colorCircle">
+        app:layout_constraintTop_toTopOf="@id/initialBalanceInputLayout"
+        app:layout_constraintBottom_toBottomOf="@id/initialBalanceInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/limitEditText"
+            android:inputType="numberDecimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/changeColorButton"
+        android:id="@+id/addNewBalanceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="Change color"
+        android:text="@string/add_new_balance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/limitInputLayout"/>
 

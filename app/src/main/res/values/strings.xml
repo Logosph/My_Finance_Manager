@@ -2,17 +2,28 @@
     <string name="app_name">My Finance Manager</string>
     <string name="statistics">Statistics</string>
     <string name="statistics_screen">Statistics screen</string>
-    <string name="filter">filter</string>
+    <string name="filter">Filter</string>
     <string name="filter_widget">Filter widget</string>
-    <string name="limit">limit</string>
+    <string name="limit">Limit</string>
     <string name="limits_screen">Limits screen</string>
     <string name="add_new_account">Add new account</string>
     <string name="color">Color</string>
     <string name="pick_your_color">Pick your color</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
-    <string name="value">Value</string>
-    <string name="saturation">Saturation</string>
-    <string name="hue">Hue</string>
-    <string name="hex_color">Hex color</string>
+    <string name="value" translatable="false">Value</string>
+    <string name="saturation" translatable="false">Saturation</string>
+    <string name="hue" translatable="false">Hue</string>
+    <string name="hex_color" translatable="false">Hex color</string>
+    <string name="add_new_balance">Add new balance</string>
+    <string name="initial_balance">Initial balance</string>
+    <string name="icon">Icon</string>
+    <string name="name_of_balance">Name of balance</string>
+    <string name="enter_balance_error">Enter balance</string>
+    <string name="enter_limit_error">Enter limit</string>
+    <string name="enter_name_error">Enter name of balance</string>
+    <string name="enter_icon_error">Enter icon value</string>
+    <string name="error">An undefined error occurred</string>
+    <string name="balance_already_exists">Balance with this name already exists</string>
+    <string name="left_text">Left: </string>
 </resources>

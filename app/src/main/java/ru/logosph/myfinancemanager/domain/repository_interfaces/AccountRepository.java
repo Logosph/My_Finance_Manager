@@ -16,4 +16,10 @@ public interface AccountRepository {
     void loadAccountsFromDB(Context context, LifecycleOwner lifecycleOwner);
 
     LiveData<ArrayList<AccountsItem>> getAccounts();
+
+    LiveData<AccountsItem> getOneAccount();
+
+    void getAccountByName(Context context, LifecycleOwner lifecycleOwner, String name);
+
+    void insert(Context context, AccountsItem accountsItem);
 }

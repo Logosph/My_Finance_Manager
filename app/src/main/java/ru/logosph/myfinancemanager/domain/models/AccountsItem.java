@@ -12,15 +12,43 @@ public class AccountsItem {
     public Double balance;
     public Double limit;
     public String currency;
-    public String color;
+    public Integer color;
     public Integer icon;
 
-    public AccountsItem(String name, Double balance, Double limit, String currency, String color, Integer icon) {
+    public AccountsItem(String name, Double balance, Double limit, String currency, Integer color, Integer icon) {
         this.name = name;
         this.balance = balance;
         this.limit = limit;
         this.currency = currency;
         this.color = color;
         this.icon = icon;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public Double getLimit() {
+        return limit;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public Integer getColor() {
+        return color;
+    }
+
+    public Integer getIcon() {
+        return icon;
     }
 }

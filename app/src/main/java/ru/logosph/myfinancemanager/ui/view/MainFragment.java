@@ -41,10 +41,10 @@ public class MainFragment extends Fragment {
             binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });
 
-        viewModel.getAccounts(getViewLifecycleOwner());
+        viewModel.getAccounts(getContext(), getViewLifecycleOwner());
 
         binding.fabAddAccount.setOnClickListener(v -> {
-            MyBottomSheetDialogFragment bottomSheetDialogFragment = new MyBottomSheetDialogFragment();
+            AddNewBalanceBottomSheetDialogFragment bottomSheetDialogFragment = new AddNewBalanceBottomSheetDialogFragment();
             bottomSheetDialogFragment.show(getParentFragmentManager(),  bottomSheetDialogFragment.getTag());
         });
 

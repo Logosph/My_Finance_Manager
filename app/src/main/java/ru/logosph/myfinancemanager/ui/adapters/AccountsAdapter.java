@@ -38,12 +38,13 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
         holder.binding.accountName.setText(account.name);
         holder.binding.amountOfMoney.setText(String.valueOf(account.balance));
         if (account.icon != null) {
-            holder.binding.accountImage.setImageDrawable(account.icon);
-            holder.binding.accountImage.setColorFilter(android.graphics.Color.parseColor(account.color));
+            // holder.binding.accountImage.setImageDrawable(account.icon);
+            holder.binding.accountImage.setColorFilter(account.color);
         } else {
             holder.binding.accountImage.setImageResource(R.drawable.account_circle);
-            holder.binding.accountImage.setColorFilter(android.graphics.Color.parseColor(account.color));
+            holder.binding.accountImage.setColorFilter(account.color);
         }
+        holder.binding.limit.setText(holder.itemView.getResources().getString(R.string.left_text) + " " + String.valueOf(account.limit));
     }
 
     @Override

@@ -56,6 +56,31 @@
             app:layout_constraintTop_toBottomOf="@id/accountName"
             tools:text="198 000 rub" />
 
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TextView for limit -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/divider"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Left: 125 руб" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

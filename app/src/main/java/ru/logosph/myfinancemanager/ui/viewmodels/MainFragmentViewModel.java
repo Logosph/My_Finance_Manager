@@ -1,5 +1,7 @@
 package ru.logosph.myfinancemanager.ui.viewmodels;
 
+import android.content.Context;
+
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,12 +17,12 @@ public class MainFragmentViewModel extends androidx.lifecycle.ViewModel {
 
     public MutableLiveData<ArrayList<AccountModel>> accounts = new MutableLiveData<>();
 
-    public void getAccounts(LifecycleOwner lifecycleOwner) {
+    public void getAccounts(Context context, LifecycleOwner lifecycleOwner) {
         LoadAccountsUseCase loadAccountsUseCase = new LoadAccountsUseCase();
         AccountRepository accountRepository = new AccountRepositoryImpl();
         loadAccountsUseCase.accounts.observe(lifecycleOwner, accountModels -> {
             accounts.setValue(accountModels);
         });
-        loadAccountsUseCase.execute(lifecycleOwner, accountRepository);
+        loadAccountsUseCase.execute(context, lifecycleOwner, accountRepository);
     }
 }

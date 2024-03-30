@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мой финансовый менеджер</string>
+    <string name="statistics">Статистика</string>
+    <string name="statistics_screen">Экран статистики</string>
+    <string name="filter">Фильтр</string>
+    <string name="filter_widget">Виджет фильтра</string>
+    <string name="limit">Лимит</string>
+    <string name="limits_screen">Экран лимитов</string>
+    <string name="add_new_account">Создать новый счёт</string>
+    <string name="color">Цвет</string>
+    <string name="pick_your_color">Выбери свой цвет</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="add_new_balance">Добавить новый счёт</string>
+    <string name="initial_balance">Баланс</string>
+    <string name="icon">Иконка</string>
+    <string name="name_of_balance">Название счёта</string>
+    <string name="enter_balance_error">Введите баланс</string>
+    <string name="enter_limit_error">Введите лимит</string>
+    <string name="enter_name_error">Введите название счёта</string>
+    <string name="enter_icon_error">Введите значение иконки</string>
+    <string name="error">Непредвиденная ошибка</string>
+    <string name="balance_already_exists">Счёт с таким названием уже существует</string>
+    <string name="left_text">Осталось: </string>
+</resources>
