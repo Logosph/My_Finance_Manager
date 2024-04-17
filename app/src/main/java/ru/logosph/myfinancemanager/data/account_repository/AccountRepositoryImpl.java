@@ -37,6 +37,14 @@ public class AccountRepositoryImpl implements AccountRepository {
     }
 
     @Override
+    public void updateBalanceByName(Context context, String name, double balance) {
+        AccountsDB accountsDB = AccountsDB.getInstance(context);
+        AccountsDao accountsDao = accountsDB.accountsDao();
+
+        Thread thread = new Thread(() -> accountsDao.updateBalance(name, balance));
+    }
+
+    @Override
     public void getAccountByName(Context context, LifecycleOwner lifecycleOwner, String name) {
         AccountsDB accountsDB = AccountsDB.getInstance(context);
         AccountsDao accountsDao = accountsDB.accountsDao();
@@ -46,6 +54,8 @@ public class AccountRepositoryImpl implements AccountRepository {
         });
 
     }
+
+
 
     @Override
     public void insert(Context context, AccountsItem accountsItem) {

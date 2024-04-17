@@ -2,9 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.MainFragment">
+    tools:context=".ui.view.fragments.MainFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -26,9 +27,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="80dp"
         tools:itemCount="12"
         tools:listitem="@layout/item_account"
 
@@ -40,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:hideOnScroll="true"
         app:menu="@menu/menu_bottom_bar_normal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/add_new_account"
+        app:hideMotionSpec="@anim/nav_default_exit_anim"
         app:layout_anchor="@id/bottomAppBar"
         app:srcCompat="@drawable/baseline_add_24" />
 

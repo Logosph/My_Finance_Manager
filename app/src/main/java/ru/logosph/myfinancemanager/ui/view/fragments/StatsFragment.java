@@ -1,4 +1,4 @@
-package ru.logosph.myfinancemanager.ui.view;
+package ru.logosph.myfinancemanager.ui.view.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import org.jetbrains.annotations.Nullable;
 
-import ru.logosph.myfinancemanager.R;
 import ru.logosph.myfinancemanager.databinding.FragmentStatsBinding;
 
 public class StatsFragment extends Fragment {

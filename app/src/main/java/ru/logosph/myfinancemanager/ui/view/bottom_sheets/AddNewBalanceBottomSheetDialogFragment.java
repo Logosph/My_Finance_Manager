@@ -1,4 +1,4 @@
-package ru.logosph.myfinancemanager.ui.view;
+package ru.logosph.myfinancemanager.ui.view.bottom_sheets;
 
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -19,12 +19,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import ru.logosph.myfinancemanager.R;
 import ru.logosph.myfinancemanager.databinding.FragmentAddNewBalanceBottomSheetBinding;
 import ru.logosph.myfinancemanager.domain.enums.AddNewBalanceStates;
+import ru.logosph.myfinancemanager.ui.view.dialogs.ColorPickerDialogFragment;
 import ru.logosph.myfinancemanager.ui.viewmodels.AddNewBalanceViewModel;
 
 public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     FragmentAddNewBalanceBottomSheetBinding binding;
-    boolean state = false;
 
     @Nullable
     @Override

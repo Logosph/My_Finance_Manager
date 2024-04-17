@@ -1,4 +1,4 @@
-package ru.logosph.myfinancemanager.ui.view;
+package ru.logosph.myfinancemanager.ui.view.dialogs;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;

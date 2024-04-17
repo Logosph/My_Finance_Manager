@@ -16,6 +16,7 @@ import ru.logosph.myfinancemanager.domain.usecases.LoadAccountsUseCase;
 public class MainFragmentViewModel extends androidx.lifecycle.ViewModel {
 
     public MutableLiveData<ArrayList<AccountModel>> accounts = new MutableLiveData<>();
+    public Boolean isFabMenuOpen = false;
 
     public void getAccounts(Context context, LifecycleOwner lifecycleOwner) {
         LoadAccountsUseCase loadAccountsUseCase = new LoadAccountsUseCase();

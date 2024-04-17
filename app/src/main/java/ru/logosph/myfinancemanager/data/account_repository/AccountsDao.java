@@ -19,4 +19,7 @@ public interface AccountsDao {
 
     @Query("SELECT * FROM accounts_table WHERE name = :name")
     LiveData<AccountsItem> getAccountByName(String name);
+
+    @Query("UPDATE accounts_table SET balance = :balance WHERE name = :name")
+    int updateBalance(String name, double balance);
 }

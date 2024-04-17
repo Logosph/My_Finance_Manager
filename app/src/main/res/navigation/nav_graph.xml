@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="ru.logosph.myfinancemanager.ui.view.MainFragment"
+        android:name="ru.logosph.myfinancemanager.ui.view.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/statsFragment"
-        android:name="ru.logosph.myfinancemanager.ui.view.StatsFragment"
+        android:name="ru.logosph.myfinancemanager.ui.view.fragments.StatsFragment"
         android:label="fragment_stats"
         tools:layout="@layout/fragment_stats" >
         <action

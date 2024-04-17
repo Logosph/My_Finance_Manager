@@ -19,6 +19,8 @@ public interface AccountRepository {
 
     LiveData<AccountsItem> getOneAccount();
 
+    void updateBalanceByName(Context context, String name, double balance);
+
     void getAccountByName(Context context, LifecycleOwner lifecycleOwner, String name);
 
     void insert(Context context, AccountsItem accountsItem);

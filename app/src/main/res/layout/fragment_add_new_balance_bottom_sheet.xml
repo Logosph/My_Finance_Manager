@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.view.AddNewBalanceBottomSheetDialogFragment">
+    tools:context=".ui.view.bottom_sheets.AddNewBalanceBottomSheetDialogFragment">
 
     <!-- Здесь вы можете добавить любые элементы интерфейса, которые вы хотите отобразить в вашем Bottom Sheet -->
 

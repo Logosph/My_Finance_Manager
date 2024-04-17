@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/more"
+        android:title="@string/more"
+        android:icon="@drawable/more_vert"
+        android:contentDescription="@string/more_options"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/add"
+        android:title="@string/add"
+        android:icon="@drawable/add"
+        android:contentDescription="@string/add_money"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/remove"
+        android:title="@string/remove"
+        android:icon="@drawable/remove"
+        android:contentDescription="@string/remove_money"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/transfer"
+        android:title="@string/transfer"
+        android:icon="@drawable/swap_horiz"
+        android:contentDescription="@string/transfer_money_between_accounts"
+        app:showAsAction="always" />
+
+
+</menu>
