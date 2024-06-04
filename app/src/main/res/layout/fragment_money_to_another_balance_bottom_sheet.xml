@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingBottom="16dp">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:id="@+id/bottomSheetDragHandle"
@@ -19,10 +19,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/roboto_medium"
+        android:text="@string/transfer"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bottomSheetDragHandle"
-        tools:text="Incoming" />
+        app:layout_constraintTop_toBottomOf="@id/bottomSheetDragHandle" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/forAccountTextView"
@@ -31,32 +31,57 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_light"
+        android:text="@string/from"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/typeOfTransactionTextView"
-        tools:text="for XXX account" />
+        app:layout_constraintTop_toBottomOf="@id/typeOfTransactionTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/selectedAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/forAccountTextView"
+        app:layout_constraintStart_toEndOf="@id/forAccountTextView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/toAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/to"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selectedAccountTextView" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fromAccountLayout"
+        android:id="@+id/toAccountInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/forAccountTextView">
+        app:layout_constraintTop_toBottomOf="@id/toAccountTextView">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEditText"
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/toAccountAutoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="Choose balance"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/amountInputLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,7 +90,7 @@
         android:hint="@string/amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fromAccountLayout">
+        app:layout_constraintTop_toBottomOf="@id/toAccountInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/amountEditText"
@@ -75,33 +100,50 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Button to select the date -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/selectDateButton"
+        android:id="@+id/datePickerButton"
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Select Date"
+        android:text="Choose date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amountInputLayout" />
 
-    <!-- Submit Button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/submitTransactionButton"
+        android:id="@+id/transferButton"
         style="@style/Widget.Material3.Button.TonalButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="Save"
+        android:text="@string/transfer"
         app:icon="@drawable/baseline_check_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/selectDateButton" />
+        app:layout_constraintTop_toBottomOf="@id/datePickerButton" />
 
+    <View
+        android:id="@+id/blockingView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8000"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

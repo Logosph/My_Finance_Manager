@@ -1,5 +1,6 @@
 package ru.logosph.myfinancemanager.ui.view.bottom_sheets;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -25,6 +26,16 @@ import ru.logosph.myfinancemanager.ui.viewmodels.AddNewBalanceViewModel;
 public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     FragmentAddNewBalanceBottomSheetBinding binding;
+    OnDissmissListener listener;
+
+
+    public interface OnDissmissListener {
+        void onDismiss();
+    }
+
+    public void setOnDismissListener(OnDissmissListener listener) {
+        this.listener = listener;
+    }
 
     @Nullable
     @Override
@@ -89,6 +100,9 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
             if (errors == 0) {
                 viewModel.addNewBalanceState.observe(getViewLifecycleOwner(), addNewBalanceStates -> {
                     if (addNewBalanceStates == AddNewBalanceStates.SUCCESS) {
+                        if (listener != null) {
+                            listener.onDismiss();
+                        }
                         dismiss();
                     } else if (addNewBalanceStates == AddNewBalanceStates.ALREADY_EXISTS) {
                         Snackbar.make(binding.getRoot(), getResources().getString(R.string.balance_already_exists), Snackbar.LENGTH_LONG).show();
@@ -121,5 +135,4 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
             }
         });
     }
-
 }

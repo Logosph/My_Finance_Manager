@@ -1,5 +1,6 @@
 package ru.logosph.myfinancemanager.domain.models;
 
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -50,5 +51,25 @@ public class AccountsItem {
 
     public Integer getIcon() {
         return icon;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        AccountsItem accountsItem = (AccountsItem) obj;
+        return id == accountsItem.id &&
+                name.equals(accountsItem.name) &&
+                balance.equals(accountsItem.balance) &&
+                limit.equals(accountsItem.limit) &&
+                currency.equals(accountsItem.currency) &&
+                color.equals(accountsItem.color) &&
+                icon.equals(accountsItem.icon);
     }
 }

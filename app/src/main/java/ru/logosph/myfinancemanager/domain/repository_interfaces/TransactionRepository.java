@@ -12,11 +12,11 @@ import ru.logosph.myfinancemanager.domain.models.TransactionItem;
 public interface TransactionRepository {
 
     void insert(Context context, TransactionItem transactionItem);
-    LiveData<List<TransactionItem>> getAllTransactions(Context context, LifecycleOwner lifecycleOwner);
-    LiveData<List<TransactionItem>> getTransactionsByAccount(Context context, LifecycleOwner lifecycleOwner, String account);
-    LiveData<List<TransactionItem>> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name);
-    LiveData<List<TransactionItem>> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome);
-
+    List<TransactionItem> getAllTransactions(Context context, LifecycleOwner lifecycleOwner);
+    List<TransactionItem> getTransactionsByAccount(Context context, LifecycleOwner lifecycleOwner, String account);
+    List<TransactionItem> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name);
+    List<TransactionItem> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome);
+    void deleteByAccount(Context context, String account);
 
 
 }

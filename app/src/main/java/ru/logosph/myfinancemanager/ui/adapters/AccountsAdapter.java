@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -18,18 +19,21 @@ import java.util.ArrayList;
 import ru.logosph.myfinancemanager.R;
 import ru.logosph.myfinancemanager.databinding.ItemAccountBinding;
 import ru.logosph.myfinancemanager.domain.models.AccountModel;
+import ru.logosph.myfinancemanager.ui.view.HelperClasses.AccountDiffCallback;
 
 public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.AccountsViewHolder> {
 
     ArrayList<AccountModel> accounts = new ArrayList<>();
+    AccountDiffCallback accountDiffCallback = new AccountDiffCallback();
     private int focusedItem = -1;
 
-    private OnItemClickListener listener;
+    public OnItemClickListener listener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
+    public AccountsAdapter() {}
     public AccountsAdapter(ArrayList<AccountModel> accounts) {
         this.accounts = accounts;
     }
@@ -139,6 +143,37 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.Accoun
     public int getFocusedItem() {
         return focusedItem;
     }
+
+    public void updateList(ArrayList<AccountModel> newAccounts) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return accounts.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return newAccounts.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return accountDiffCallback.areItemsTheSame(accounts.get(oldItemPosition), newAccounts.get(newItemPosition));
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return accountDiffCallback.areContentsTheSame(accounts.get(oldItemPosition), newAccounts.get(newItemPosition));
+            }
+        });
+
+        accounts.clear();
+        accounts.addAll(newAccounts);
+        focusedItem = -1;
+        diffResult.dispatchUpdatesTo(this);
+
+    }
+
 }
 
 

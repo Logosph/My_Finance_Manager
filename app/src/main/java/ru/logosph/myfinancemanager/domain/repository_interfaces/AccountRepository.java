@@ -2,26 +2,25 @@ package ru.logosph.myfinancemanager.domain.repository_interfaces;
 
 import android.content.Context;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import java.util.ArrayList;
 
 import ru.logosph.myfinancemanager.domain.models.AccountsItem;
 
 public interface AccountRepository {
 
-    MutableLiveData<ArrayList<AccountsItem>> accounts = new MutableLiveData<>();
-    void loadAccountsFromDB(Context context, LifecycleOwner lifecycleOwner);
+    ArrayList<AccountsItem> accounts = new ArrayList<>();
 
-    LiveData<ArrayList<AccountsItem>> getAccounts();
+    void loadAccountsFromDB(Context context);
 
-    LiveData<AccountsItem> getOneAccount();
+    ArrayList<AccountsItem> getAccounts();
+
+    AccountsItem getOneAccount();
 
     void updateBalanceByName(Context context, String name, double balance);
 
-    void getAccountByName(Context context, LifecycleOwner lifecycleOwner, String name);
+    void getAccountByName(Context context, String name);
 
     void insert(Context context, AccountsItem accountsItem);
+
+    void delete(Context context, AccountsItem accountsItem);
 }

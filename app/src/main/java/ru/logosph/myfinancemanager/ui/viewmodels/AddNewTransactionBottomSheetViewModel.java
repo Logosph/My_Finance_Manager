@@ -15,14 +15,14 @@ import ru.logosph.myfinancemanager.domain.repository_interfaces.AccountRepositor
 import ru.logosph.myfinancemanager.domain.repository_interfaces.TransactionRepository;
 import ru.logosph.myfinancemanager.domain.usecases.AddTransactionUseCase;
 
-public class AddNewTransactionBottomSheetViewModel extends ViewModel {
-    public Date date;
+    public class AddNewTransactionBottomSheetViewModel extends ViewModel {
+    public Date date = new Date();
     public String account;
     public Boolean isIncome;
-    public MutableLiveData<Boolean> complete = new MutableLiveData<>(false);
+    volatile public MutableLiveData<Boolean> complete = new MutableLiveData<>(false);
 
 
-    public void addTransaction(String name, String amount, Context context, LifecycleOwner lifecycleOwner) {
+    public void addTransaction(String name, String amount, Context context) {
         TransactionItem transactionItem = new TransactionItem(
                 name,
                 isIncome,
@@ -32,7 +32,11 @@ public class AddNewTransactionBottomSheetViewModel extends ViewModel {
         );
         TransactionRepository transactionRepository = new TransactionRepositoryImpl();
         AccountRepository accountRepository = new AccountRepositoryImpl();
-        AddTransactionUseCase.execute(transactionItem, context, transactionRepository, accountRepository);
+
+        new Thread(() -> {
+            AddTransactionUseCase.execute(transactionItem, context, transactionRepository, accountRepository);
+            complete.postValue(true);
+        }).start();
 
     }
 }

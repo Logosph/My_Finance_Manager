@@ -12,24 +12,15 @@ import ru.logosph.myfinancemanager.domain.repository_interfaces.AccountRepositor
 
 public class AddNewAccountUseCase {
 
-    MutableLiveData<AddNewBalanceStates> addNewBalanceState = new MutableLiveData<>();
+    public AddNewBalanceStates execute(AccountsItem accountsItem, AccountRepository accountRepository, Context context) {
 
-    public LiveData<AddNewBalanceStates> getAddNewBalanceState() {
-        return addNewBalanceState;
-    }
-
-    public void execute(AccountsItem accountsItem, LifecycleOwner lifecycleOwner, AccountRepository accountRepository, Context context) {
-
-        accountRepository.getOneAccount().observe(lifecycleOwner, accountsItem1 -> {
-            if (accountsItem1 == null) {
-                new Thread(() -> {
-                    accountRepository.insert(context, accountsItem);
-                    addNewBalanceState.postValue(AddNewBalanceStates.SUCCESS);
-                }).start();
-            } else {
-                addNewBalanceState.setValue(AddNewBalanceStates.ALREADY_EXISTS);
-            }
-        });
-        accountRepository.getAccountByName(context, lifecycleOwner, accountsItem.getName());
+        accountRepository.getAccountByName(context, accountsItem.getName());
+        AccountsItem accountsItemTaken = accountRepository.getOneAccount();
+        if (accountsItemTaken == null) {
+            accountRepository.insert(context, accountsItem);
+            return AddNewBalanceStates.SUCCESS;
+        } else {
+            return AddNewBalanceStates.ALREADY_EXISTS;
+        }
     }
 }

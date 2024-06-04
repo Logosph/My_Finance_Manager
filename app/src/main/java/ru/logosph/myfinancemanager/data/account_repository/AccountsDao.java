@@ -15,11 +15,14 @@ public interface AccountsDao {
     long insert(AccountsItem accountsItem);
 
     @Query("SELECT * FROM accounts_table")
-    LiveData<List<AccountsItem>> getAllAccounts();
+    List<AccountsItem> getAllAccounts();
 
     @Query("SELECT * FROM accounts_table WHERE name = :name")
-    LiveData<AccountsItem> getAccountByName(String name);
+    AccountsItem getAccountByName(String name);
 
     @Query("UPDATE accounts_table SET balance = :balance WHERE name = :name")
     int updateBalance(String name, double balance);
+
+    @Query("DELETE FROM accounts_table WHERE name = :name")
+    void delete(String name);
 }

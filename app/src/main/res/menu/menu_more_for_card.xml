@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/deleteAccount"
+        android:title="@string/delete"
+        android:icon="@drawable/delete_icon" />
+    <item android:id="@+id/renameAccount"
+        android:title="@string/rename"
+        android:icon="@drawable/edit"/>
+    <item android:id="@+id/statisticsAccount"
+        android:title="@string/statistics"
+        android:icon="@drawable/statistics"/>
+</menu>

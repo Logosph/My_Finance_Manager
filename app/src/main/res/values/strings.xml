@@ -14,7 +14,7 @@
     <string name="value" translatable="false">Value</string>
     <string name="saturation" translatable="false">Saturation</string>
     <string name="hue" translatable="false">Hue</string>
-    <string name="hex_color" translatable="false">Hex color</string>
+    <string name="hex_color">Hex color</string>
     <string name="add_new_balance">Add new balance</string>
     <string name="initial_balance">Initial balance</string>
     <string name="icon">Icon</string>
@@ -37,4 +37,8 @@
     <string name="amount">Amount</string>
     <string name="name">Name</string>
     <string name="date">Date</string>
+    <string name="delete">Delete</string>
+    <string name="rename">Rename</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>

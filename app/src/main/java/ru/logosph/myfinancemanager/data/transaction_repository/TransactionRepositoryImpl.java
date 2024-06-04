@@ -13,18 +13,17 @@ import ru.logosph.myfinancemanager.domain.repository_interfaces.TransactionRepos
 public class TransactionRepositoryImpl implements TransactionRepository {
     @Override
     public void insert(Context context, TransactionItem transactionItem) {
-        Thread thread = new Thread(() -> {
-            TransactionDB transactionDB = TransactionDB.getInstance(context);
-            TransactionDao transactionDao = transactionDB.transactionDao();
 
-            transactionDao.insert(transactionItem);
-        });
+        TransactionDB transactionDB = TransactionDB.getInstance(context);
+        TransactionDao transactionDao = transactionDB.transactionDao();
 
-        thread.start();
+        transactionDao.insert(transactionItem);
+
+
     }
 
     @Override
-    public LiveData<List<TransactionItem>> getAllTransactions(Context context, LifecycleOwner lifecycleOwner) {
+    public List<TransactionItem> getAllTransactions(Context context, LifecycleOwner lifecycleOwner) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -32,7 +31,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public LiveData<List<TransactionItem>> getTransactionsByAccount(Context context, LifecycleOwner lifecycleOwner, String account) {
+    public List<TransactionItem> getTransactionsByAccount(Context context, LifecycleOwner lifecycleOwner, String account) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -40,7 +39,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public LiveData<List<TransactionItem>> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name) {
+    public List<TransactionItem> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -48,10 +47,18 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public LiveData<List<TransactionItem>> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome) {
+    public List<TransactionItem> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
         return transactionDao.getTransactionsByType(isIncome);
+    }
+
+    @Override
+    public void deleteByAccount(Context context, String account) {
+        TransactionDB transactionDB = TransactionDB.getInstance(context);
+        TransactionDao transactionDao = transactionDB.transactionDao();
+
+        transactionDao.deleteByAccount(account);
     }
 }

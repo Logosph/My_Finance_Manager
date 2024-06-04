@@ -1,5 +1,6 @@
 package ru.logosph.myfinancemanager.ui.view.bottom_sheets;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,15 @@ public class AddTransactionBottomSheetDialog extends BottomSheetDialogFragment {
 
     FragmentAddTransactionBottomSheetBinding binding;
     AddNewTransactionBottomSheetViewModel viewModel;
+    OnDismissListener listener;
+
+    public interface OnDismissListener {
+        void onDismiss();
+    }
+
+    public void setOnDismissListener(OnDismissListener listener) {
+        this.listener = listener;
+    }
 
     @Nullable
     @Override
@@ -45,7 +55,9 @@ public class AddTransactionBottomSheetDialog extends BottomSheetDialogFragment {
             }
         }
 
+        binding.selectDateButton.setText(new SimpleDateFormat("dd.MM.yyyy").format(viewModel.date));
         binding.selectDateButton.setOnClickListener(v -> {
+
             MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder.datePicker().build();
             datePicker.addOnPositiveButtonClickListener(selection -> {
                 viewModel.date = new Date(selection);
@@ -53,6 +65,7 @@ public class AddTransactionBottomSheetDialog extends BottomSheetDialogFragment {
                 binding.selectDateButton.setText(sdf.format(viewModel.date));
             });
             datePicker.show(getParentFragmentManager(), "datePicker");
+
         });
 
         binding.submitTransactionButton.setOnClickListener(v -> {
@@ -63,7 +76,7 @@ public class AddTransactionBottomSheetDialog extends BottomSheetDialogFragment {
             try {
                 name = binding.nameEditText.getText().toString();
             } catch (NullPointerException e) {
-                binding.nameInputLayout.setError("Name is required");
+                binding.fromAccountLayout.setError("Name is required");
                 errors++;
             }
 
@@ -77,10 +90,20 @@ public class AddTransactionBottomSheetDialog extends BottomSheetDialogFragment {
             if (errors > 0) {
                 return;
             }
-            viewModel.addTransaction(name, amount, getContext(), getViewLifecycleOwner());
-            dismiss();
+            viewModel.addTransaction(name, amount, getContext());
+            viewModel.complete.observe(getViewLifecycleOwner(), complete -> {
+                if (complete) {
+                    if (listener != null) {
+                        listener.onDismiss();
+                    }
+                    dismiss();
+                }
+            });
         });
 
         return binding.getRoot();
     }
+
+
+
 }

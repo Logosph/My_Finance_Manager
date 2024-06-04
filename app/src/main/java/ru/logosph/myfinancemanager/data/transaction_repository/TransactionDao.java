@@ -16,15 +16,19 @@ interface TransactionDao {
     long insert(TransactionItem transactionItem);
 
     @Query("SELECT * FROM transaction_table")
-    LiveData<List<TransactionItem>> getAllTransactions();
+    List<TransactionItem> getAllTransactions();
 
     @Query("SELECT * FROM transaction_table WHERE name = :name")
-    LiveData<List<TransactionItem>> getTransactionsByName(String name);
+    List<TransactionItem> getTransactionsByName(String name);
 
     @Query("SELECT * FROM transaction_table WHERE account = :account")
-    LiveData<List<TransactionItem>> getTransactionsByAccount(String account);
+    List<TransactionItem> getTransactionsByAccount(String account);
 
     @Query("SELECT * FROM transaction_table WHERE isIncome = :isIncome")
-    LiveData<List<TransactionItem>> getTransactionsByType(Boolean isIncome);
+    List<TransactionItem> getTransactionsByType(Boolean isIncome);
+
+    // Удалить ВСЕ записи у которых account = :account
+    @Query("DELETE FROM transaction_table WHERE account = :account")
+    void deleteByAccount(String account);
 
 }
