@@ -25,4 +25,7 @@ public interface AccountsDao {
 
     @Query("DELETE FROM accounts_table WHERE name = :name")
     void delete(String name);
+
+    @Query("UPDATE accounts_table SET name = :newName WHERE name = :oldName")
+    void rename(String oldName, String newName);
 }

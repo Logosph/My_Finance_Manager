@@ -17,6 +17,6 @@ public interface TransactionRepository {
     List<TransactionItem> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name);
     List<TransactionItem> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome);
     void deleteByAccount(Context context, String account);
-
+    void renameAccount(Context context, String oldName, String newName);
 
 }

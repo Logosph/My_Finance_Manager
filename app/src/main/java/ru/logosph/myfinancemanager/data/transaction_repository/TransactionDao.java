@@ -31,4 +31,7 @@ interface TransactionDao {
     @Query("DELETE FROM transaction_table WHERE account = :account")
     void deleteByAccount(String account);
 
+    @Query("UPDATE transaction_table SET account = :newName WHERE account = :oldName")
+    void renameAccount(String oldName, String newName);
+
 }

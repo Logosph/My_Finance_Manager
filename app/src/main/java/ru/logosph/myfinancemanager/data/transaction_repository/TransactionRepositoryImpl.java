@@ -61,4 +61,12 @@ public class TransactionRepositoryImpl implements TransactionRepository {
 
         transactionDao.deleteByAccount(account);
     }
+
+    @Override
+    public void renameAccount(Context context, String oldName, String newName) {
+        TransactionDB transactionDB = TransactionDB.getInstance(context);
+        TransactionDao transactionDao = transactionDB.transactionDao();
+
+        transactionDao.renameAccount(oldName, newName);
+    }
 }

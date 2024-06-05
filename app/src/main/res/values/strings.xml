@@ -41,4 +41,17 @@
     <string name="rename">Rename</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="all">All</string>
+    <string name="income">Income</string>
+    <string name="expenses">Expenses</string>
+
+    <string name="analyticalPieChartAmount">Amount</string>
+
+    <string-array name="analyticalPieChartColorArray">
+        <item>#E480F4</item>
+        <item>#6CC3F3</item>
+        <item>#7167ED</item>
+        <item>#D9455F</item>
+        <item>#6054EA</item>
+    </string-array>
 </resources>

@@ -26,6 +26,7 @@ import ru.logosph.myfinancemanager.ui.adapters.AccountsAdapter;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.AddNewBalanceBottomSheetDialogFragment;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.AddTransactionBottomSheetDialog;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.MoneyToAnotherBalanceBSFragment;
+import ru.logosph.myfinancemanager.ui.view.dialogs.RenameDialogFragment;
 import ru.logosph.myfinancemanager.ui.viewmodels.MainFragmentViewModel;
 
 /**
@@ -125,7 +126,12 @@ public class MainFragment extends Fragment {
                         viewModel.deleteAccount(getContext(), adapter.getAccount(adapter.getFocusedItem()).name);
                         return true;
                     } else if (menuItemId == R.id.renameAccount) {
-                        Snackbar.make(binding.getRoot(), "Rename", Snackbar.LENGTH_SHORT).show();
+                        RenameDialogFragment bottomSheetDialogFragment = new RenameDialogFragment();
+                        Bundle args = new Bundle();
+                        args.putString("oldName", adapter.getAccount(adapter.getFocusedItem()).name);
+                        bottomSheetDialogFragment.setArguments(args);
+                        bottomSheetDialogFragment.setOnDismissListener(() -> viewModel.getAccounts(getContext()));
+                        bottomSheetDialogFragment.show(getParentFragmentManager(), bottomSheetDialogFragment.getTag());
                         return true;
                     } else if (menuItemId == R.id.statisticsAccount) {
                         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);

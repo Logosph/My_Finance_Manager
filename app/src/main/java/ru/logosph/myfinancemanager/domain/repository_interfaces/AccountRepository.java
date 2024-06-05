@@ -23,4 +23,5 @@ public interface AccountRepository {
     void insert(Context context, AccountsItem accountsItem);
 
     void delete(Context context, AccountsItem accountsItem);
+    void rename(Context context, String oldName, String newName);
 }

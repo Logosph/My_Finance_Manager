@@ -69,4 +69,15 @@ public class AccountRepositoryImpl implements AccountRepository {
         transactionRepository.deleteByAccount(context, accountsItem.name);
     }
 
+    @Override
+    public void rename(Context context, String oldName, String newName) {
+        AccountsDB accountsDB = AccountsDB.getInstance(context);
+        AccountsDao accountsDao = accountsDB.accountsDao();
+
+        accountsDao.rename(oldName, newName);
+
+        TransactionRepositoryImpl transactionRepository = new TransactionRepositoryImpl();
+        transactionRepository.renameAccount(context, oldName, newName);
+    }
+
 }
