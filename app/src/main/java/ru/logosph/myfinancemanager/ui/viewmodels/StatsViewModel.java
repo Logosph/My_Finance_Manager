@@ -1,6 +1,5 @@
 package ru.logosph.myfinancemanager.ui.viewmodels;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class StatsViewModel extends ViewModel {

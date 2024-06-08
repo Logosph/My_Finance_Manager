@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import ru.logosph.myfinancemanager.R;
 import ru.logosph.myfinancemanager.databinding.FragmentAddNewBalanceBottomSheetBinding;
 import ru.logosph.myfinancemanager.domain.enums.AddNewBalanceStates;
+import ru.logosph.myfinancemanager.ui.view.dialogs.ChooseIconDialog;
 import ru.logosph.myfinancemanager.ui.view.dialogs.ColorPickerDialogFragment;
 import ru.logosph.myfinancemanager.ui.viewmodels.AddNewBalanceViewModel;
 
@@ -54,6 +55,7 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
                 drawable.setShape(GradientDrawable.OVAL);
                 drawable.setColor(color);
                 binding.colorCircle.setBackground(drawable);
+                binding.iconImageView.setColorFilter(color);
             });
             colorPickerDialogFragment.show(getParentFragmentManager(), "colorPickerDialogFragment");
         });
@@ -61,7 +63,6 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
         setEditText(binding.initialBalanceEditText);
         setEditText(binding.limitEditText);
         setEditText(binding.balanceNameEditText);
-        setEditText(binding.iconEditText);
 
         binding.addNewBalanceButton.setOnClickListener(v -> {
             double balance = 0, limit = 0;
@@ -83,10 +84,10 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
                 errors++;
             }
 
-            try {
-                icon = Integer.parseInt(binding.iconEditText.getText().toString());
-            } catch (NumberFormatException e) {
-                binding.iconInputLayout.setError(getResources().getString(R.string.enter_icon_error));
+            if (viewModel.iconId != -1) {
+                icon = viewModel.iconId;
+            } else {
+                Snackbar.make(binding.getRoot(), getResources().getString(R.string.choose_icon_error), Snackbar.LENGTH_LONG).show();
                 errors++;
             }
 
@@ -112,6 +113,17 @@ public class AddNewBalanceBottomSheetDialogFragment extends BottomSheetDialogFra
                 });
                 viewModel.addNewBalance(balance, limit, color, icon, name, getViewLifecycleOwner(), getContext());
             }
+        });
+
+        binding.iconImageView.setOnClickListener(v -> {
+
+            ChooseIconDialog chooseIconDialog = new ChooseIconDialog();
+            chooseIconDialog.setListener(iconId -> {
+                viewModel.iconId = iconId;
+                binding.iconImageView.setImageResource(getResources().getIdentifier("icon_" + iconId, "drawable", getContext().getPackageName()));
+            });
+            chooseIconDialog.setColor(((GradientDrawable) binding.colorCircle.getBackground()).getColor().getDefaultColor());
+            chooseIconDialog.show(getParentFragmentManager(), "chooseIconDialog");
         });
 
         return binding.getRoot();

@@ -4,19 +4,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ru.logosph.myfinancemanager.ui.DiagramView.AnalyticalPieChart
-        android:id="@+id/analyticalPieChart"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ru.logosph.myfinancemanager.ui.diagram_view.AnalyticalPieChart
+                android:id="@+id/analyticalPieChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="8dp"
+                app:pieChartCircleSectionSpace="2"
+                app:pieChartCircleStrokeWidth="6dp"
+                app:pieChartColors="@array/analyticalPieChartColorArray"
+                app:pieChartTextAmount="@string/analyticalPieChartAmount"
+                app:pieChartTextAmountColor="@color/md_theme_onSurface"
+                app:pieChartTextDescriptionColor="@color/md_theme_onSurfaceVariant"
+                app:pieChartTextDescriptionSize="14sp"
+                app:pieChartTextNumberColor="@color/md_theme_onSurface"
+                app:pieChartTextNumberSize="16sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transactionsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/blocking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:pieChartCircleSectionSpace="2"
-        app:pieChartCircleStrokeWidth="6dp"
-        app:pieChartColors="@array/analyticalPieChartColorArray"
-        app:pieChartTextAmount="@string/analyticalPieChartAmount"
-        app:pieChartTextAmountColor="@color/md_theme_onSurface"
-        app:pieChartTextDescriptionColor="@color/md_theme_onSurfaceVariant"
-        app:pieChartTextDescriptionSize="14sp"
-        app:pieChartTextNumberColor="@color/md_theme_onSurface"
-        app:pieChartTextNumberSize="16sp" />
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:hideAnimationBehavior="outward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showAnimationBehavior="inward" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

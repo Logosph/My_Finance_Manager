@@ -26,6 +26,7 @@ import ru.logosph.myfinancemanager.ui.adapters.AccountsAdapter;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.AddNewBalanceBottomSheetDialogFragment;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.AddTransactionBottomSheetDialog;
 import ru.logosph.myfinancemanager.ui.view.bottom_sheets.MoneyToAnotherBalanceBSFragment;
+import ru.logosph.myfinancemanager.ui.view.dialogs.ChooseIconDialog;
 import ru.logosph.myfinancemanager.ui.view.dialogs.RenameDialogFragment;
 import ru.logosph.myfinancemanager.ui.viewmodels.MainFragmentViewModel;
 
@@ -195,6 +196,7 @@ public class MainFragment extends Fragment {
                 return false;
             }
         });
+
 
         // Return the root view for this fragment
         return binding.getRoot();

@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "transaction_table")
-public class TransactionItem {
+public class TransactionItem implements TransactionsAndDateItems {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

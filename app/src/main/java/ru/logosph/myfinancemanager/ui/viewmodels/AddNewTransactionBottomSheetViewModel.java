@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.logosph.myfinancemanager.data.account_repository.AccountRepositoryImpl;
@@ -23,10 +24,11 @@ import ru.logosph.myfinancemanager.domain.usecases.AddTransactionUseCase;
 
 
     public void addTransaction(String name, String amount, Context context) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         TransactionItem transactionItem = new TransactionItem(
                 name,
                 isIncome,
-                date.toString(),
+                simpleDateFormat.format(date),
                 Double.parseDouble(amount),
                 account
         );

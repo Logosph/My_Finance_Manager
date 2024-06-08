@@ -2,9 +2,6 @@ package ru.logosph.myfinancemanager.data.transaction_repository;
 
 import android.content.Context;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-
 import java.util.List;
 
 import ru.logosph.myfinancemanager.domain.models.TransactionItem;
@@ -18,12 +15,10 @@ public class TransactionRepositoryImpl implements TransactionRepository {
         TransactionDao transactionDao = transactionDB.transactionDao();
 
         transactionDao.insert(transactionItem);
-
-
     }
 
     @Override
-    public List<TransactionItem> getAllTransactions(Context context, LifecycleOwner lifecycleOwner) {
+    public List<TransactionItem> getAllTransactions(Context context) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -31,7 +26,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public List<TransactionItem> getTransactionsByAccount(Context context, LifecycleOwner lifecycleOwner, String account) {
+    public List<TransactionItem> getTransactionsByAccount(Context context, String account) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -39,7 +34,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public List<TransactionItem> getTransactionsByName(Context context, LifecycleOwner lifecycleOwner, String name) {
+    public List<TransactionItem> getTransactionsByName(Context context, String name) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 
@@ -47,7 +42,7 @@ public class TransactionRepositoryImpl implements TransactionRepository {
     }
 
     @Override
-    public List<TransactionItem> getTransactionsByType(Context context, LifecycleOwner lifecycleOwner, Boolean isIncome) {
+    public List<TransactionItem> getTransactionsByType(Context context, Boolean isIncome) {
         TransactionDB transactionDB = TransactionDB.getInstance(context);
         TransactionDao transactionDao = transactionDB.transactionDao();
 

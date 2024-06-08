@@ -2,6 +2,7 @@ package ru.logosph.myfinancemanager.domain.usecases;
 
 import android.content.Context;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ru.logosph.myfinancemanager.domain.models.TransactionItem;
@@ -19,10 +20,12 @@ public class AddTransferBtw2AccountsUseCase {
             TransactionRepository transactionRepository,
             AccountRepository accountRepository
     ) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         TransactionItem transactionItemFrom = new TransactionItem(
                 name,
                 false,
-                date.toString(),
+                simpleDateFormat.format(date),
                 amount,
                 fromAccount
         );
@@ -30,7 +33,7 @@ public class AddTransferBtw2AccountsUseCase {
         TransactionItem transactionItemTo = new TransactionItem(
                 name,
                 true,
-                date.toString(),
+                simpleDateFormat.format(date),
                 amount,
                 toAccount
         );

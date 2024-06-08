@@ -13,7 +13,8 @@ import ru.logosph.myfinancemanager.domain.usecases.AddNewAccountUseCase;
 
 public class AddNewBalanceViewModel extends ViewModel {
 
-    volatile public MutableLiveData<AddNewBalanceStates> addNewBalanceState = new MutableLiveData<>();
+    public MutableLiveData<AddNewBalanceStates> addNewBalanceState = new MutableLiveData<>();
+    public int iconId = -1;
 
     public void addNewBalance(
             double balance,

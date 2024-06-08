@@ -44,14 +44,12 @@
     <string name="all">All</string>
     <string name="income">Income</string>
     <string name="expenses">Expenses</string>
+    <string name="choose_icon_error">Choose icon</string>
 
     <string name="analyticalPieChartAmount">Amount</string>
 
     <string-array name="analyticalPieChartColorArray">
-        <item>#E480F4</item>
-        <item>#6CC3F3</item>
-        <item>#7167ED</item>
-        <item>#D9455F</item>
-        <item>#6054EA</item>
+        <item>#FF0000</item>
+        <item>#00FF00</item>
     </string-array>
 </resources>

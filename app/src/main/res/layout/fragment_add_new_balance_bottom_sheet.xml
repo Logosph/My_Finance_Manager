@@ -68,30 +68,22 @@
         android:text="@string/icon"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/iconInputLayout"
-        app:layout_constraintBottom_toBottomOf="@id/iconInputLayout"/>
+        app:layout_constraintTop_toTopOf="@id/iconImageView"
+        app:layout_constraintBottom_toBottomOf="@id/iconImageView"/>
 
 
     <!-- TextInput for icon -->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/iconInputLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:id="@+id/iconImageView"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:hint="@string/icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/colorCircle"
-        app:layout_constraintStart_toStartOf="@id/limitInputLayout">
+        app:srcCompat="@drawable/icon_1" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/iconEditText"
-            android:layout_width="match_parent"
-            android:inputType="number"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/initialBalanceInputLayout"
@@ -103,7 +95,7 @@
         android:hint="@string/initial_balance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/limitInputLayout"
-        app:layout_constraintTop_toBottomOf="@id/iconInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/iconImageView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/initialBalanceEditText"

@@ -1,4 +1,4 @@
-package ru.logosph.myfinancemanager.ui.DiagramView;
+package ru.logosph.myfinancemanager.ui.diagram_view;
 
 import android.os.Parcel;
 import android.os.Parcelable;

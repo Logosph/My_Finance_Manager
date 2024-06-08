@@ -1,4 +1,4 @@
-package ru.logosph.myfinancemanager.ui.DiagramView;
+package ru.logosph.myfinancemanager.ui.diagram_view;
 
 import static ru.logosph.myfinancemanager.Methods.dpToPx;
 import static ru.logosph.myfinancemanager.Methods.spToPx;
@@ -34,6 +34,10 @@ import ru.logosph.myfinancemanager.R;
 public class AnalyticalPieChart extends View implements AnalyticalPieChartInterface {
 
     private boolean isAnimationEnabled = true;
+
+    public interface TextFormatter {
+        String format(int value);
+    }
 
     @Override
     public void setAnimationEnabled(boolean enabled) {
@@ -85,11 +89,17 @@ public class AnalyticalPieChart extends View implements AnalyticalPieChartInterf
     private float textAmountXDescription = 0F;
     private float textAmountYDescription = 0F;
     private int totalAmount = 0;
+    private int totalAmountToDisplay = 0;
     private List<String> pieChartColors = new ArrayList<>();
     private List<AnalyticalPieChartModel> percentageCircleList = new ArrayList<>();
     private List<StaticLayout> textRowList = new ArrayList<>();
     private List<SimpleEntry<Integer, String>> dataList = new ArrayList<>();
     private int animationSweepAngle = 0;
+    private TextFormatter textFormatter = value -> String.valueOf(value);
+
+    public void setTextFormatter(TextFormatter textFormatter) {
+        this.textFormatter = textFormatter;
+    }
 
     public AnalyticalPieChart(Context context) {
         super(context);
@@ -168,20 +178,22 @@ public class AnalyticalPieChart extends View implements AnalyticalPieChartInterf
         dataList = list;
         calculatePercentageOfData();
         startAnimation();
-        // requestLayout();
+        requestLayout();
     }
 
     private void calculatePercentageOfData() {
         totalAmount = 0;
+        totalAmountToDisplay = 0;
         for (SimpleEntry<Integer, String> entry : dataList) {
-            totalAmount += entry.getKey();
+            totalAmount += Math.abs(entry.getKey());
+            totalAmountToDisplay += entry.getKey();
         }
 
         float startAt = circleSectionSpace;
         percentageCircleList = new ArrayList<>();
         for (int index = 0; index < dataList.size(); index++) {
             SimpleEntry<Integer, String> pair = dataList.get(index);
-            float percent = pair.getKey() * 100 / (float) totalAmount - circleSectionSpace;
+            float percent = Math.abs(pair.getKey()) * 100 / (float) totalAmount - circleSectionSpace;
             percent = Math.max(0, percent);
 
             AnalyticalPieChartModel resultModel = new AnalyticalPieChartModel(
@@ -322,24 +334,35 @@ public class AnalyticalPieChart extends View implements AnalyticalPieChartInterf
         return Math.max(textHeightWithPadding, initSizeHeight);
     }
 
+    private int resolveSize(int spec, int contentSize, int defValue) {
+        int mode = MeasureSpec.getMode(spec);
+        if (mode == MeasureSpec.EXACTLY) {
+            return MeasureSpec.getSize(spec);
+        } else if (mode == MeasureSpec.AT_MOST) {
+            return Math.min(contentSize, MeasureSpec.getSize(spec));
+        } else {
+            return contentSize;
+        }
+    }
+
     /**
      * View lifecycle method.
      * Calculation of the necessary width and height of the View.
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
         // Clear the list of lines for text
         textRowList.clear();
 
         // Get the width of the View
-        int initSizeWidth = resolveDefaultSize(widthMeasureSpec, DEFAULT_VIEW_SIZE_WIDTH);
+        int initSizeWidth = resolveSize(widthMeasureSpec, DEFAULT_VIEW_SIZE_WIDTH, DEFAULT_VIEW_SIZE_WIDTH);
 
         // Calculate the width that the text will occupy
         double textTextWidth = (initSizeWidth * TEXT_WIDTH_PERCENT);
 
         // Calculate the necessary height for our View
-        int initSizeHeight = calculateViewHeight(heightMeasureSpec, (int) textTextWidth);
+        int contentHeight = calculateViewHeight(heightMeasureSpec, (int) textTextWidth);
+        int initSizeHeight = resolveSize(heightMeasureSpec, contentHeight, DEFAULT_VIEW_SIZE_HEIGHT);
 
         // X and Y coordinates from where the text will be drawn
         textStartX = initSizeWidth - (float) textTextWidth;
@@ -372,7 +395,7 @@ public class AnalyticalPieChart extends View implements AnalyticalPieChartInterf
         textAmountY = circleCenterY;
 
         // Create a container to display text in the center of the pie chart
-        Rect sizeTextAmountNumber = getWidthOfAmountText(Integer.toString(totalAmount), amountTextPaint);
+        Rect sizeTextAmountNumber = getWidthOfAmountText(textFormatter.format(totalAmountToDisplay), amountTextPaint);
 
         // Calculate coordinates to display text in the center of the pie chart
         textAmountXNumber = circleCenterX - sizeTextAmountNumber.width() / 2;
@@ -435,7 +458,7 @@ public class AnalyticalPieChart extends View implements AnalyticalPieChartInterf
         }
 
         // Display the text result in the center of the pie chart
-        canvas.drawText(Integer.toString(totalAmount), textAmountXNumber, textAmountY, amountTextPaint);
+        canvas.drawText(textFormatter.format(totalAmountToDisplay), textAmountXNumber, textAmountY, amountTextPaint);
         canvas.drawText(textAmountStr, textAmountXDescription, textAmountYDescription, descriptionTextPain);
     }
 

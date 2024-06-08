@@ -24,4 +24,9 @@
 
         <attr name="pieChartTextAmount" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="FlexableViewGroup">
+        <attr name="spaceBetween" format="dimension"/>
+        <attr name="minSpaceBetween" format="dimension"/>
+    </declare-styleable>
 </resources>

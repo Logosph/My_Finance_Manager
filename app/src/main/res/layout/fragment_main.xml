@@ -51,5 +51,15 @@
         app:layout_anchor="@id/bottomAppBar"
         app:srcCompat="@drawable/baseline_add_24" />
 
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/testing"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:contentDescription="@string/add_new_account"-->
+<!--        app:hideMotionSpec="@anim/nav_default_exit_anim"-->
+<!--        app:layout_anchor="@id/bottomAppBar"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        app:srcCompat="@drawable/baseline_add_24" />-->
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

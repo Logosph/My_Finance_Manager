@@ -50,13 +50,15 @@ dependencies {
     // Navigation
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
-
+\
     // New Material Components
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation libs.material.v1120
 
     // Room Database
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-//    implementation 'com.cleveroad.blur_tutorial:blur_tutorial:1.0.1'
+    // Requests
+    implementation libs.okhttp
+
 }
